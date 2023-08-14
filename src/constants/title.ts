@@ -1,3 +1,3 @@
 export const TITLE = {
-    TAB_TITLE: 'TheMovieDB',
+  TAB_TITLE: 'TheMovieDB',
 };

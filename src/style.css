@@ -1,0 +1,11 @@
+body,
+#app {
+  margin: 0;
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+}
+
+.v-overlay-scroll-blocked {
+  --v-body-scroll-y: initial !important;
+}

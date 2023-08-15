@@ -53,7 +53,7 @@ const routes = [
 ];
 
 const router = VueRouter.createRouter({
-  history: VueRouter.createWebHistory(),
+  history: VueRouter.createWebHistory('/ngotrongphuc/the-movie-db-website/'),
   routes,
 });
 

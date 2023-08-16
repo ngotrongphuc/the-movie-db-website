@@ -34,6 +34,7 @@
 import { computed, ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import _ from 'lodash';
+import { useRouter } from 'vue-router';
 
 type LanguageDialog = {
   modelValue?: boolean;
@@ -43,6 +44,7 @@ const props = withDefaults(defineProps<LanguageDialog>(), {
   modelValue: false,
 });
 
+const router = useRouter()
 const store = useStore();
 
 const emit = defineEmits(['update:modelValue']);
@@ -60,8 +62,8 @@ const selectedLanguage = ref(store.state.movie.filters.language);
 
 const confirm = () => {
   store.commit('movie/setLanguage', selectedLanguage.value);
-  store.dispatch('movie/getDiscoverMovies', {
-    page: 1,
+  router.push('/').then(() => {
+    store.dispatch('movie/getDiscoverMovies', { page: 1 });
   });
   dialog.value = false;
 };

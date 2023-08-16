@@ -53,9 +53,7 @@ const routes = [
 ];
 
 const router = VueRouter.createRouter({
-  history: VueRouter.createWebHistory(
-    ENV.NODE_ENV === 'production' ? process.env.BASE_PATH : '/',
-  ),
+  history: VueRouter.createWebHistory(ENV.BASE_URL),
   routes,
 });
 

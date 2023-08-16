@@ -1,4 +1,4 @@
 module.exports = {
   publicPath:
-    process.env.NODE_ENV === 'production' ? '/the-movie-db-website/' : '/',
+    process.env.NODE_ENV === 'production' ? process.env.BASE_PATH : '/',
 };

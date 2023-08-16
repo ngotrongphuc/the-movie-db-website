@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { URL, AUTH } from 'src/constants';
+import { URL, ENV } from 'src/constants';
 import _ from 'lodash';
 import { useRouter } from 'vue-router';
 
@@ -38,8 +38,8 @@ const router = useRouter();
 
 const POSTER_URL = computed(() =>
   props.data?.poster_path
-    ? `${URL.BASE_POSTER_URL}${props.data?.poster_path}?api_key=${AUTH.API_KEY}`
-    : URL.NO_IMAGE_URL
+    ? `${URL.BASE_POSTER_URL}${props.data?.poster_path}?api_key=${ENV.API_KEY}`
+    : URL.NO_IMAGE_URL,
 );
 
 const goToDetails = () => {

@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
+    "build-with-base": "set BASE_PATH=/the-movie-db-website/ && vue-tsc && vite build",
     "preview": "vite preview",
-    "prettier": "prettier . --write"
+    "prettier": "prettier . --write",
+    "deploy-github": "./deploy.sh"
   },
   "dependencies": {
     "@types/lodash": "^4.14.197",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "@mdi/font": "^7.2.96",
+    "@types/node": "^20.5.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "prettier": "3.0.1",
     "typescript": "^4.9.3",

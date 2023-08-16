@@ -128,7 +128,7 @@ const resetFilter = () => {
 
 const confirmFilter = () => {
   const selectedGenreIds = selectedGenres.value.map(
-    (indexValue) => store.state.movie.genres[indexValue]?.id
+    (indexValue) => store.state.movie.genres[indexValue]?.id,
   );
   const filtersPayload = {
     with_genres: selectedGenreIds.join(','),

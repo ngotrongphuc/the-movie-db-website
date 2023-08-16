@@ -30,7 +30,7 @@ watch(
   () => store.state.movie.searchText,
   () => {
     searchText.value = store.state.movie.searchText;
-  }
+  },
 );
 
 const searchMovies = _.debounce((value) => {

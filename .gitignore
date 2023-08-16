@@ -22,9 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Prettier
-.prettierrc
-.prettierrc.json
-.prettierrc.js
-.prettierrc.yml

@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { URL, AUTH } from 'src/constants';
+import { URL, ENV } from 'src/constants';
 
 const axiosInstance = axios.create({
   baseURL: URL.BASE_URL,
   headers: {
-    Authorization: `Bearer ${AUTH.ACCESS_TOKEN}`,
+    Authorization: `Bearer ${ENV.ACCESS_TOKEN}`,
   },
 });
 
@@ -76,13 +76,13 @@ export const getMovieDetails = async ({ movie_id, ...params }) => {
   try {
     const { data: detailsData } = await axiosInstance.get(
       `/movie/${movie_id}`,
-      { params }
+      { params },
     );
     const { data: creditsData } = await axiosInstance.get(
-      `/movie/${movie_id}/credits`
+      `/movie/${movie_id}/credits`,
     );
     const { data: videosData } = await axiosInstance.get(
-      `/movie/${movie_id}/videos`
+      `/movie/${movie_id}/videos`,
     );
     return {
       ...detailsData,

@@ -158,14 +158,15 @@
         v-if="videos?.length > 0"
         class="h-screen d-flex align-center justify-center"
       >
-        <v-carousel :hide-delimiters="true">
+        <v-carousel v-model="playersModel" :hide-delimiters="true">
           <v-carousel-item
             v-for="(item, index) in videos"
             content-class="px-16 pb-16"
           >
             <iframe
+              class="youtube-player"
               :key="item?.key || index"
-              :src="`${URL.EMBED_YOUTUBE_URL}/${item?.key}`"
+              :src="`${URL.EMBED_YOUTUBE_URL}/${item?.key}?enablejsapi=1`"
               frameborder="0"
               loading="lazy"
               allowfullscreen
@@ -180,7 +181,7 @@
 </template>
 
 <script lang="ts" setup>
-import { URL, AUTH, TITLE } from 'src/constants';
+import { URL, ENV, TITLE } from 'src/constants';
 import { ref, onMounted, onBeforeUnmount, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
@@ -191,6 +192,22 @@ const route = useRoute();
 const movieId = ref<string>('');
 const store = useStore();
 const movie = store.state.movie;
+const playersModel = ref(0);
+
+const pauseAllPlayers = () => {
+  const youtubePlayers =
+    document.querySelectorAll<HTMLIFrameElement>('.youtube-player');
+  youtubePlayers.forEach((youtubePlayer) => {
+    youtubePlayer?.contentWindow?.postMessage(
+      '{"event":"command","func":"pauseVideo","args":""}',
+      '*',
+    );
+  });
+};
+
+watch(playersModel, () => {
+  pauseAllPlayers();
+});
 
 const goBack = () => {
   router.back();
@@ -198,13 +215,13 @@ const goBack = () => {
 
 const POSTER_URL = computed(() =>
   movie.movieDetails?.poster_path
-    ? `${URL.BASE_POSTER_URL}${movie.movieDetails?.poster_path}?api_key=${AUTH.API_KEY}`
-    : URL.NO_IMAGE_URL
+    ? `${URL.BASE_POSTER_URL}${movie.movieDetails?.poster_path}?api_key=${ENV.API_KEY}`
+    : URL.NO_IMAGE_URL,
 );
 
 const genres = computed(() => store.getters['movie/getGenres']?.join(', '));
 const directors = computed(
-  () => store.getters['movie/getDirectors']?.join(', ')
+  () => store.getters['movie/getDirectors']?.join(', '),
 );
 const casts = computed(() => {
   const listCasts = store.getters['movie/getCasts'];
@@ -212,10 +229,10 @@ const casts = computed(() => {
   return listCasts?.listCastsName?.join(', ') + hasMoreStr;
 });
 const countries = computed(
-  () => store.getters['movie/getProductionCountries']?.join(', ')
+  () => store.getters['movie/getProductionCountries']?.join(', '),
 );
 const companies = computed(
-  () => store.getters['movie/getProductionCompanies']?.join(', ')
+  () => store.getters['movie/getProductionCompanies']?.join(', '),
 );
 const videos = computed(() => store.getters['movie/getVideos']);
 
@@ -223,7 +240,7 @@ watch(
   () => movie.movieDetails?.title,
   () => {
     document.title = movie.movieDetails?.title || TITLE.TAB_TITLE;
-  }
+  },
 );
 
 onMounted(() => {

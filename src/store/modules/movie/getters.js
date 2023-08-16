@@ -6,7 +6,7 @@ export default {
   },
   getDirectors(state) {
     const listDirectors = state.movieDetails?.crew?.filter(
-      ({ job }) => job === 'Director'
+      ({ job }) => job === 'Director',
     );
     return listDirectors?.map((director) => director.name);
   },
@@ -14,7 +14,7 @@ export default {
     const listCasts = _.orderBy(
       state.movieDetails?.cast,
       ['popularity'],
-      ['desc']
+      ['desc'],
     );
     const slicedListCasts = listCasts.slice(0, 5);
     const listCastsName = slicedListCasts?.map((cast) => cast.name);
@@ -22,17 +22,17 @@ export default {
   },
   getProductionCountries(state) {
     return state.movieDetails?.production_countries?.map(
-      (country) => country.name
+      (country) => country.name,
     );
   },
   getProductionCompanies(state) {
     return state.movieDetails?.production_companies?.map(
-      (company) => company.name
+      (company) => company.name,
     );
   },
   getVideos(state) {
     return state.movieDetails?.videosData?.filter(
-      ({ site }) => site === 'YouTube'
+      ({ site }) => site === 'YouTube',
     );
   },
 };

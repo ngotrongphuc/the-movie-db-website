@@ -9,7 +9,7 @@
     "build-with-base": "set BASE_PATH=/the-movie-db-website/ && vue-tsc && vite build",
     "preview": "vite preview",
     "prettier": "prettier . --write",
-    "deploy-github": "./deploy.sh"
+    "deploy-github": "./deploy-github.sh"
   },
   "dependencies": {
     "@types/lodash": "^4.14.197",

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="h-100 bg-black">
     <v-row v-if="movie.movies.length > 0">
-      <v-col v-for="(item, index) in movie.movies" cols="3">
+      <v-col v-for="(item, index) in movie.movies" cols="12" sm="6" md="3" lg="2">
         <MovieCard :key="item.id || index" :data="item" />
       </v-col>
     </v-row>

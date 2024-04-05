@@ -12,7 +12,7 @@
     </div>
     <div v-else>
       <v-row no-gutters class="pa-0">
-        <v-col class="pe-4">
+        <v-col class="pe-4" order="1" order-sm="0">
           <v-row no-gutters class="align-end">
             <p class="text-h6 text-blue-grey-lighten-3 me-2">Title:</p>
             <p class="text-h6">
@@ -145,7 +145,7 @@
             </p>
           </v-row>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="12" sm="3">
           <v-img
             :src="POSTER_URL"
             :lazy-src="URL.LAZY_LOADING_URL"
